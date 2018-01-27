@@ -31,6 +31,18 @@ namespace LuckyNumbers
                 UserLuckyNum = int.Parse(Console.ReadLine());
             }
 
+            if ((UsersLowestNum >= 0 ) && (UsersHighestNum >= 0))
+            {
+                Random r = new Random();
+                int[] LuckyGameNum = new int[6];
+
+                for (int i = 0; i < LuckyGameNum.Length; i++)
+                {
+                    LuckyGameNum[i] = r.Next(UsersLowestNum, UsersHighestNum);
+                    Console.WriteLine(LuckyGameNum[i]);
+                }
+            } 
+
 
 
 
