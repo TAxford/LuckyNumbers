@@ -39,7 +39,7 @@ namespace LuckyNumbers
                 for (int i = 0; i < LuckyGameNum.Length; i++)
                 {
                     LuckyGameNum[i] = r.Next(UsersLowestNum, UsersHighestNum);
-                    Console.WriteLine(LuckyGameNum[i]);
+                    Console.WriteLine("Lucky Number: " + LuckyGameNum[i]);
                 }
             } 
 
