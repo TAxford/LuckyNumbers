@@ -12,7 +12,13 @@ namespace LuckyNumbers
         {
             int UsersLowestNum;
             int UsersHighestNum;
-            int UserLuckyNum;
+            int matches = 0;
+            int LuckyJackpot = 777777777;
+            int reward = matches + LuckyJackpot;
+            
+
+            Console.WriteLine("Welcome to LuckyNumbers, the Game where you can win " + "$" + LuckyJackpot + " dollars " + " please press enter to start! ");
+            Console.ReadLine();
 
             Console.WriteLine("Please choose your lowest starting number");//user chooses starting point to lottery numbers
             UsersLowestNum = int.Parse(Console.ReadLine());//user input for lowest
@@ -23,78 +29,54 @@ namespace LuckyNumbers
             int finish = UsersHighestNum;//sets users highest to finish varuable
 
             Console.WriteLine("Please enter your 6 lucky numbers");//asking user to chose 6 numbers
+
             int[] UserLuckyNums = new int[6];
-            
 
             for (int i = 0; i < UserLuckyNums.Length; i++)
             {
-                UserLuckyNum = int.Parse(Console.ReadLine());
+                UserLuckyNums[i] = int.Parse(Console.ReadLine());
+
+                if ((UserLuckyNums[i] < UsersLowestNum) || (UserLuckyNums[i] > UsersHighestNum))
+                {
+                    Console.WriteLine("You have input a wrong number, Please chose again");
+                    Console.ReadLine();
+                }
+
             }
 
-            if ((UsersLowestNum >= 0 ) && (UsersHighestNum >= 0))
+
+            Random r = new Random();//starts the random generator for lucky winning numbers
+
+            int[] LuckyGameNum = new int[6];
+
+            for (int i = 0; i < LuckyGameNum.Length; i++)
             {
-                Random r = new Random();
-                int[] LuckyGameNum = new int[6];
+                LuckyGameNum[i] = r.Next(UsersLowestNum, UsersHighestNum);
+                Console.WriteLine("Lucky Number: " + LuckyGameNum[i]);//displays the Winning numbers
 
-                for (int i = 0; i < LuckyGameNum.Length; i++)
+            }
+
+            for (int i = 0; i < UserLuckyNums.Length; i++)
+            {
+                for (int j = 0; j < LuckyGameNum.Length; j++)
                 {
-                    LuckyGameNum[i] = r.Next(UsersLowestNum, UsersHighestNum);
-                    Console.WriteLine("Lucky Number: " + LuckyGameNum[i]);
+                    if (UserLuckyNums[i] == LuckyGameNum[j])
+                        matches = matches + 1;
                 }
-            } 
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            Console.WriteLine("You have won " + reward);
+          
+            {
+                Console.Write("Do you want to play again [Yes or No]?");
+                string answer = Console.ReadLine().ToUpper();
+                if (answer == "Yes")
+                    return;
+                if (answer == "No")
+                {
+                    Console.WriteLine("Thanks for playing!");
+                }
+            }
 
 
 
@@ -112,5 +94,7 @@ namespace LuckyNumbers
 
 
         }
+
+
     }
 }
